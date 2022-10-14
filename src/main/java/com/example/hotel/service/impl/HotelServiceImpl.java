@@ -2,18 +2,37 @@ package com.example.hotel.service.impl;
 
 import com.example.hotel.dto.HotelSerViceDto;
 import com.example.hotel.entity.HotelServiceEntity;
-import com.example.hotel.entity.OrderEntity;
+import com.example.hotel.repository.HotelRepository;
+import com.example.hotel.repository.HotelServiceRepository;
 import com.example.hotel.service.Service.HotelServiceService;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
-import java.util.List;
-import java.util.Optional;
 @Service
 @Transactional
 public class HotelServiceImpl implements HotelServiceService {
+    private final HotelServiceRepository hotelServiceRepository;
+
+    private final HotelRepository hotelRepository;
+    public HotelServiceImpl(HotelServiceRepository hotelServiceRepository, HotelRepository hotelRepository) {
+        this.hotelServiceRepository = hotelServiceRepository;
+        this.hotelRepository = hotelRepository;
+    }
+
     @Override
     public Long create(HotelSerViceDto hotelSerViceDto) {
+        HotelServiceEntity hotelServiceEntity=new HotelServiceEntity();
+
+        hotelServiceEntity.setDays(hotelSerViceDto.getDays());
+        hotelServiceEntity.setNights(hotelSerViceDto.getNights());
+        hotelServiceEntity.setLunchlevel(hotelServiceEntity.getLunchlevel());
+        hotelServiceEntity.setDinnerLevel(hotelServiceEntity.getDinnerLevel());
+
+        hotelServiceEntity=hotelServiceRepository.save(hotelServiceEntity);
+
+        
+
+
         return null;
     }
 
@@ -24,7 +43,7 @@ public class HotelServiceImpl implements HotelServiceService {
 
     @Override
     public HotelServiceEntity getById(Long id) {
-        return Optional.empty();
+        return null;
     }
 
     @Override

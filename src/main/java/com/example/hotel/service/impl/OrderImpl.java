@@ -20,7 +20,7 @@ public class OrderImpl implements OrderService {
 
     @Override
     public OrderEntity getById(Long id) {
-        return Optional.empty();
+        return null;
     }
 
     @Override
